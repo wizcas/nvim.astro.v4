@@ -131,5 +131,10 @@ return {
         desc = "CD to the current file's directory"
       }
     },
+    filetypes = {
+      extension = {
+        mdx = "markdown"
+      }
+    }
   },
 }

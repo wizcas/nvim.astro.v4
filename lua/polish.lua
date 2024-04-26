@@ -1,4 +1,4 @@
-if true then return end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- This will run last in the setup process and is a good place to configure
 -- things like custom filetypes. This just pure lua so anything that doesn't
@@ -43,3 +43,23 @@ if vim.fn.has "win32" then
   vim.opt.shellxquote = ""
   vim.g.noshellslash = true
 end
+
+-- IME Switching in Neovide
+local function set_ime(args)
+  if args.event:match "Enter$" then
+    vim.g.neovide_input_ime = true
+  else
+    vim.g.neovide_input_ime = false
+  end
+end
+local ime_input = vim.api.nvim_create_augroup("ime_input", { clear = true })
+vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+  group = ime_input,
+  pattern = "*",
+  callback = set_ime,
+})
+vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
+  group = ime_input,
+  pattern = "[/\\?]",
+  callback = set_ime,
+})
