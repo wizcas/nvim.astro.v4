@@ -26,13 +26,13 @@ return {
     },
     rooter = {
       autochdir = true,
-        detector = {
-          "lsp", -- highest priority is getting workspace from running language servers
-          {"package.json"},
-          {"README.md", "readme.md", "README.MD", "readme.MD"},
-          { ".git", "_darcs", ".hg", ".bzr", ".svn" }, -- next check for a version controlled parent directory
-          { "lua", "MakeFile" }, -- lastly check for known project root files
-        },
+      detector = {
+        "lsp", -- highest priority is getting workspace from running language servers
+        { "package.json" },
+        { "README.md", "readme.md", "README.MD", "readme.MD" },
+        { ".git", "_darcs", ".hg", ".bzr", ".svn" }, -- next check for a version controlled parent directory
+        { "lua", "MakeFile" }, -- lastly check for known project root files
+      },
     },
     -- vim options can be configured here
     options = {
@@ -108,6 +108,12 @@ return {
         ["<Leader>h"] = { ":noh<cr>", desc = "noh" },
         ["<Leader>\\"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" },
         ["<Leader>-"] = { "<cmd>split<cr>", desc = "Horizontal Split" },
+        -- DBee
+        ["<Leader>d"] = { desc = "Database" },
+        ["<Leader>do"] = {
+          function() require("dbee").toggle() end,
+          desc = "Toggle DBee",
+        },
       },
       i = {
         ["<Leader>,"] = {
@@ -137,14 +143,14 @@ return {
     },
     commands = {
       CDHere = {
-        function() vim.cmd("cd %:p:h") end,
-        desc = "CD to the current file's directory"
-      }
+        function() vim.cmd "cd %:p:h" end,
+        desc = "CD to the current file's directory",
+      },
     },
     filetypes = {
       extension = {
-        mdx = "markdown"
-      }
-    }
+        mdx = "markdown",
+      },
+    },
   },
 }
