@@ -24,6 +24,16 @@ return {
       virtual_text = true,
       underline = true,
     },
+    rooter = {
+      autochdir = true,
+        detector = {
+          "lsp", -- highest priority is getting workspace from running language servers
+          {"package.json"},
+          {"README.md", "readme.md", "README.MD", "readme.MD"},
+          { ".git", "_darcs", ".hg", ".bzr", ".svn" }, -- next check for a version controlled parent directory
+          { "lua", "MakeFile" }, -- lastly check for known project root files
+        },
+    },
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
