@@ -69,7 +69,8 @@ return {
   },
 
   -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", 
+  {
+    "max397574/better-escape.nvim",
     --enabled = false,
   },
 
@@ -120,5 +121,14 @@ return {
     -- lazy = false,
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function() require("gitlinker").setup() end,
+  },
+
+  --
+  {
+    "github/copilot.vim",
+  },
+  --
+  {
+    "mechatroner/rainbow_csv",
   },
 }
