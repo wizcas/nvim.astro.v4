@@ -32,6 +32,7 @@ return {
         { "README.md", "readme.md", "README.MD", "readme.MD" },
         { ".git", "_darcs", ".hg", ".bzr", ".svn" }, -- next check for a version controlled parent directory
         { "lua", "MakeFile" }, -- lastly check for known project root files
+        { "OWNER" },
       },
     },
     -- vim options can be configured here
