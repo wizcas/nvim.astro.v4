@@ -49,7 +49,7 @@ return {
         undofile = true, -- enable persistent undo
         updatetime = 300, -- faster completion (4000ms default)
         autoread = true, -- automatically reload changed files
-        guifont = "CaskaydiaCove Nerd Font,FantasqueSansM Nerd Font,Fira Code Nerd Font,Fira Code NF:h16", -- fonts for GUI clients
+        guifont = "Maple Mono NF CN,CaskaydiaCove Nerd Font,FantasqueSansM Nerd Font,Fira Code Nerd Font,Fira Code NF:h16", -- fonts for GUI clients
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
