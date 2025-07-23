@@ -63,3 +63,12 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
   pattern = "[/\\?]",
   callback = set_ime,
 })
+
+-- Disable auto wrap on textwidth for Markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.textwidth = 0
+    vim.opt_local.wrap = true
+  end,
+})

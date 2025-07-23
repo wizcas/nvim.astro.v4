@@ -131,4 +131,14 @@ return {
   {
     "mechatroner/rainbow_csv",
   },
+  {
+    "astrocommunity.docs.man-nvim",
+    enabled = false,
+  },
+  -- MDX support
+  {
+    "davidmh/mdx.nvim",
+    config = true,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
 }
