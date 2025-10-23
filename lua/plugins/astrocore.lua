@@ -115,6 +115,58 @@ return {
           function() require("dbee").toggle() end,
           desc = "Toggle DBee",
         },
+        -- Git hunk navigation
+        ["]g"] = {
+          function()
+            if vim.wo.diff then
+              vim.cmd.normal({ "]c", bang = true })
+            else
+              require("gitsigns").nav_hunk("next")
+            end
+          end,
+          desc = "Next Git hunk",
+        },
+        ["[g"] = {
+          function()
+            if vim.wo.diff then
+              vim.cmd.normal({ "[c", bang = true })
+            else
+              require("gitsigns").nav_hunk("prev")
+            end
+          end,
+          desc = "Previous Git hunk",
+        },
+        -- Git actions
+        ["<Leader>g"] = { desc = "Git" },
+        ["<Leader>gh"] = {
+          function() require("gitsigns").preview_hunk() end,
+          desc = "Preview Git hunk",
+        },
+        ["<Leader>ghs"] = {
+          function() require("gitsigns").stage_hunk() end,
+          desc = "Stage Git hunk",
+        },
+        ["<Leader>ghu"] = {
+          function() require("gitsigns").undo_stage_hunk() end,
+          desc = "Undo stage Git hunk",
+        },
+        ["<Leader>ghr"] = {
+          function() require("gitsigns").reset_hunk() end,
+          desc = "Reset Git hunk",
+        },
+        ["<Leader>gS"] = {
+          function() require("gitsigns").stage_buffer() end,
+          desc = "Stage entire buffer",
+        },
+        ["<Leader>gU"] = {
+          function() require("gitsigns").reset_buffer_index() end,
+          desc = "Unstage entire buffer",
+        },
+        -- Markdown preview
+        ["<Leader>m"] = { desc = "Markdown" },
+        ["<Leader>mp"] = { "<cmd>MarkdownPreview<cr>", desc = "Start preview" },
+        ["<Leader>ms"] = { "<cmd>MarkdownPreviewStop<cr>", desc = "Stop preview" },
+        ["<Leader>mt"] = { "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle preview" },
       },
       i = {
         ["<Leader>,"] = {
