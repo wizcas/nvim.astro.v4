@@ -133,6 +133,7 @@ return {
           noremap = true,
           replace_keycodes = false,
         },
+        ["<Leader>uP"] = { "<cmd>TogglePrettier<cr>", desc = "Toggle Prettier" },
       },
       v = {
         p = { '"_dP', desc = "Paste without yanking" },
@@ -146,6 +147,47 @@ return {
       CDHere = {
         function() vim.cmd "cd %:p:h" end,
         desc = "CD to the current file's directory",
+      },
+      TogglePrettier = {
+        function()
+          local null_ls = require "null-ls"
+          local state_file = vim.fn.stdpath("data") .. "/prettier_state.json"
+
+          -- Get current sources
+          local current_sources = null_ls.get_sources()
+          local prettier_enabled = false
+
+          -- Check if prettierd is currently active
+          for _, source in ipairs(current_sources) do
+            if source.name == "prettierd" then
+              prettier_enabled = true
+              break
+            end
+          end
+
+          if prettier_enabled then
+            -- Disable prettier
+            null_ls.disable("prettierd")
+            vim.notify("Prettier disabled", vim.log.levels.INFO)
+            -- Save disabled state
+            local file = io.open(state_file, "w")
+            if file then
+              file:write('{"enabled": false}')
+              file:close()
+            end
+          else
+            -- Re-enable prettier
+            null_ls.register(null_ls.builtins.formatting.prettierd)
+            vim.notify("Prettier enabled", vim.log.levels.INFO)
+            -- Save enabled state
+            local file = io.open(state_file, "w")
+            if file then
+              file:write('{"enabled": true}')
+              file:close()
+            end
+          end
+        end,
+        desc = "Toggle Prettier formatter",
       },
     },
     filetypes = {
